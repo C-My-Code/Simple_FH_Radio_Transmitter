@@ -2,11 +2,6 @@ library ieee;
 use ieee.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
---Last Modification: 4/15 Kevin - Changes the sensitivity list from DATA to CARRIER
--- Modulator for FHSS Transmitter
-
--- entity declaration
-
 entity Modulator is 
 port ( IDLE, DATA : in std_logic;
 	CARRIER : in std_logic_vector(7 downto 0);
