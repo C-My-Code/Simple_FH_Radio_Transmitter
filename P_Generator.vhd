@@ -1,7 +1,4 @@
--- Created By: Kevin Miller
---	Last Edit: 4/14/22 Kevin
---
---
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
