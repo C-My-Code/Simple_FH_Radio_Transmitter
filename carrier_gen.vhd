@@ -3,10 +3,6 @@ use ieee.std_logic_1164.all;
 use ieee.std_logic_unsigned.all;
 use IEEE.numeric_std.all;
 
---Last Modification: 4/15 Kevin - Removed and modified an if section, changed the sensivity list, fixed Modulator getting stuck at top and bottom for extra cycle.
--- Carrier Generator for FHSS Transmitter
-
---Entity Declaration
 
 entity carrier_gen is
 port ( clk : in std_logic;
@@ -14,8 +10,6 @@ port ( clk : in std_logic;
 	raw_out : out std_logic_vector (7 downto 0)
 	);
 end entity carrier_gen;
-
--- architecture
 
 architecture behavioral of carrier_gen is
 
@@ -26,7 +20,6 @@ architecture behavioral of carrier_gen is
 
 begin
 
--- divide input 50 MHz clock according to selector specifications
 	clock_divider : process (clk, sel) 
 
 	variable count_508 : integer range 0 to 49 := 0;
@@ -35,9 +28,9 @@ begin
 	variable count_2032 : integer range 0 to 12 := 0;
 
 	begin
-	if sel = "00" then -- if selected frequency out is 508 kHz
+	if sel = "00" then
 		if (clk'event and clk = '1') then
-			if (count_508 = 49 ) then -- invert at 256 kHz
+			if (count_508 = 49 ) then 
 				temp <= not(temp);
 				count_508 := 0;
 			else
@@ -45,9 +38,9 @@ begin
 			end if;
 		end if;
 	
-	elsif sel = "01" then -- if selected frequency out is 1016 kHz
+	elsif sel = "01" then 
 		if (clk'event and clk = '1') then
-			if (count_1016 = 24) then -- invert at 508 kHz
+			if (count_1016 = 24) then 
 				temp <= not(temp);
 				count_1016 := 0;
 			else
@@ -55,9 +48,9 @@ begin
 			end if;
 		end if;
 
-	elsif sel = "10" then -- if selected frequency out is 1524 kHz
+	elsif sel = "10" then 
 		if (clk'event and clk = '1') then
-			if (count_1524 = 16) then -- invert at  762 kHz
+			if (count_1524 = 16) then
 				temp <= not(temp);
 				count_1524 := 0;
 			else
@@ -65,9 +58,9 @@ begin
 			end if;
 		end if;
 
-	elsif sel = "11" then -- if selected frequency out is 2032  kHz
+	elsif sel = "11" then 
 		if (clk'event and clk = '1') then
-			if (count_2032 = 12) then -- invert at  1016 kHz
+			if (count_2032 = 12) then
 				temp <= not(temp);
 				count_2032 := 0;
 			else
